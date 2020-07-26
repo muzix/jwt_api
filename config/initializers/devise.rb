@@ -288,7 +288,7 @@ Devise.setup do |config|
   #   include Turbolinks::Controller
   # end
   config.jwt do |jwt|
-    jwt.secret = "4308d01dbed9ba4ec5ac8e2b81b6cd374ac539c79df839f2b417a3ebba14fac959fc6d06be54e9561e8baafb759874e33221b0ad4be3d522a7268c9dfb7cd9c7"
+    jwt.secret = ENV['DEVISE_JWT_SECRET_KEY']
 
     jwt.dispatch_requests = [
       ['POST', %r{^/login$}]
