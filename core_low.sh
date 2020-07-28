@@ -1,0 +1,1 @@
+ffmpeg -i rtmp://localhost/live/$1 -c:v libx264 -preset:v ultrafast -force_key_frames "expr:gte(t,n_forced*0.6)" -s 854x480 -b:v 200K -c:a copy -f ssegment -segment_list /root/tmp/$1_low.m3u8 -segment_list_type hls -segment_list_size 5 -segment_list_flags +live -segment_time 0.6 -segment_wrap 5 /root/tmp/$1_low%01d.ts
