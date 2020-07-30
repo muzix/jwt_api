@@ -1,5 +1,4 @@
 yum -y install wget
-
 yum -y install autoconf automake bzip2 bzip2-devel cmake freetype-devel gcc gcc-c++ git libtool make mercurial pkgconfig zlib-devel
 mkdir ~/ffmpeg_sources
 cd ~/ffmpeg_sources
@@ -10,7 +9,6 @@ cd nasm-2.14.02
 ./configure --prefix="$HOME/ffmpeg_build" --bindir="$HOME/bin"
 make
 make install
-
 cd ~/ffmpeg_sources
 curl -O -L https://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz
 tar xzvf yasm-1.3.0.tar.gz
@@ -18,21 +16,18 @@ cd yasm-1.3.0
 ./configure --prefix="$HOME/ffmpeg_build" --bindir="$HOME/bin"
 make
 make install
-
 cd ~/ffmpeg_sources
 git clone --depth 1 https://code.videolan.org/videolan/x264.git
 cd x264
 PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure --prefix="$HOME/ffmpeg_build" --bindir="$HOME/bin" --enable-static
 make
 make install
-
 cd ~/ffmpeg_sources
 hg clone https://bitbucket.org/multicoreware/x265
 cd ~/ffmpeg_sources/x265/build/linux
 cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$HOME/ffmpeg_build" -DENABLE_SHARED:bool=off ../../source
 make
 make install
-
 cd ~/ffmpeg_sources
 git clone --depth 1 https://github.com/mstorsjo/fdk-aac
 cd fdk-aac
@@ -40,7 +35,6 @@ autoreconf -fiv
 ./configure --prefix="$HOME/ffmpeg_build" --disable-shared
 make
 make install
-
 cd ~/ffmpeg_sources
 curl -O -L https://downloads.sourceforge.net/project/lame/lame/3.100/lame-3.100.tar.gz
 tar xzvf lame-3.100.tar.gz
@@ -48,7 +42,6 @@ cd lame-3.100
 ./configure --prefix="$HOME/ffmpeg_build" --bindir="$HOME/bin" --disable-shared --enable-nasm
 make
 make install
-
 cd ~/ffmpeg_sources
 curl -O -L https://archive.mozilla.org/pub/opus/opus-1.3.1.tar.gz
 tar xzvf opus-1.3.1.tar.gz
@@ -56,14 +49,12 @@ cd opus-1.3.1
 ./configure --prefix="$HOME/ffmpeg_build" --disable-shared
 make
 make install
-
 cd ~/ffmpeg_sources
 git clone --depth 1 https://chromium.googlesource.com/webm/libvpx.git
 cd libvpx
 ./configure --prefix="$HOME/ffmpeg_build" --disable-examples --disable-unit-tests --enable-vp9-highbitdepth --as=yasm
 make
 make install
-
 cd ~/ffmpeg_sources
 curl -O -L https://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2
 tar xjvf ffmpeg-snapshot.tar.bz2
@@ -88,7 +79,6 @@ PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./conf
 make
 make install
 hash -d ffmpeg
-
 yum -y groupinstall 'Development Tools'
 yum -y install epel-release
 yum install -y  wget git unzip perl perl-devel perl-ExtUtils-Embed libxslt libxslt-devel libxml2 libxml2-devel gd gd-devel pcre-devel GeoIP GeoIP-devel
@@ -104,9 +94,7 @@ tar -xzvf openssl-1.1.0h.tar.gz
 git clone https://github.com/sergey-dryabzhinsky/nginx-rtmp-module.git
 rm -f *.tar.gz *.zip
 ls -lah
-
 cd nginx-1.19.1/
-
 ./configure --prefix=/etc/nginx \
             --sbin-path=/usr/sbin/nginx \
             --modules-path=/usr/lib64/nginx/modules \
@@ -164,20 +152,16 @@ cd nginx-1.19.1/
             --with-debug
 make
 make install
-
 ln -s /usr/lib64/nginx/modules /etc/nginx/modules
 wget https://raw.githubusercontent.com/sonpt1986/jwt_api/master/nginx.conf
 cp nginx.conf /etc/nginx/
 wget https://raw.githubusercontent.com/sonpt1986/jwt_api/master/nginx.service
 cp nginx.service /lib/systemd/system/
-
 mkdir /root/data
 mkdir /root/preview
-
 systemctl daemon-reload
 systemctl start nginx
 systemctl enable nginx
-
 systemctl stop firewalld
 systemctl disable firewalld
 
