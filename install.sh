@@ -68,7 +68,7 @@ yum -y install epel-release
 yum install -y  wget git unzip perl perl-devel perl-ExtUtils-Embed libxslt libxslt-devel libxml2 libxml2-devel gd gd-devel pcre-devel GeoIP GeoIP-devel
 cd /usr/local/src
 wget http://nginx.org/download/nginx-1.19.1.tar.gz
-tar -xzvf nginx-1.14.0.tar.gz
+tar -xzvf nginx-1.19.0.tar.gz
 wget https://ftp.pcre.org/pub/pcre/pcre-8.42.zip
 unzip pcre-8.42.zip
 wget https://www.zlib.net/zlib-1.2.11.tar.gz
