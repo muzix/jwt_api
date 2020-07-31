@@ -1,4 +1,4 @@
-yum install autoconf automake bzip2 bzip2-devel cmake freetype-devel gcc gcc-c++ git libtool make mercurial pkgconfig zlib-devel
+yum -y install autoconf automake bzip2 bzip2-devel cmake freetype-devel gcc gcc-c++ git libtool make mercurial pkgconfig zlib-devel
 mkdir ~/ffmpeg_sources
 cd ~/ffmpeg_sources
 curl -O -L https://www.nasm.us/pub/nasm/releasebuilds/2.14.02/nasm-2.14.02.tar.bz2
@@ -80,7 +80,7 @@ make install
 hash -d ffmpeg
 yum -y groupinstall 'Development Tools'
 yum -y install epel-release
-yum install -y  wget git unzip perl perl-devel perl-ExtUtils-Embed libxslt libxslt-devel libxml2 libxml2-devel gd gd-devel pcre-devel GeoIP GeoIP-devel
+yum -y install wget git unzip perl perl-devel perl-ExtUtils-Embed libxslt libxslt-devel libxml2 libxml2-devel gd gd-devel pcre-devel GeoIP GeoIP-devel
 wget http://nginx.org/download/nginx-1.19.1.tar.gz
 tar -xzvf nginx-1.19.1.tar.gz
 wget https://ftp.pcre.org/pub/pcre/pcre-8.42.zip
