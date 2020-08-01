@@ -103,7 +103,7 @@ cd nginx-1.19.1/
             --user=root \
             --group=root \
             --build=CentOS \
-            --builddir=nginx-1.14.0 \
+            --builddir=nginx-1.19.1 \
             --with-select_module \
             --with-poll_module \
             --with-threads \
@@ -157,5 +157,3 @@ cp ~/nginx.conf /etc/nginx/
 systemctl daemon-reload
 systemctl start nginx
 systemctl enable nginx
-systemctl stop firewalld
-systemctl disable firewalld
