@@ -157,3 +157,6 @@ cp ~/nginx.conf /etc/nginx/
 systemctl daemon-reload
 systemctl start nginx
 systemctl enable nginx
+mkdir /root/data
+mkdir /root/preview
+mount -t tmpfs -o size=512m tmpfs /root/data
