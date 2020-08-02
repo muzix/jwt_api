@@ -160,3 +160,4 @@ systemctl enable nginx
 mkdir /root/data
 mkdir /root/preview
 mount -t tmpfs -o size=512m tmpfs /root/data
+echo "none /root/data tmpfs size=512m" >> /etc/fstab
