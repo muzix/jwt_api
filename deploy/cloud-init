@@ -2,6 +2,7 @@
 users:
 runcmd:
   - yum -y install wget
+  - cd /root
   - wget https://raw.githubusercontent.com/sonpt1986/jwt_api/master/deploy/install.sh
   - wget https://raw.githubusercontent.com/sonpt1986/jwt_api/master/deploy/nginx.conf
   - wget https://raw.githubusercontent.com/sonpt1986/jwt_api/master/deploy/nginx.service
