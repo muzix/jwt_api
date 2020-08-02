@@ -1,4 +1,5 @@
 #cloud-config
+users:
 runcmd:
   - yum -y install wget
   - wget https://raw.githubusercontent.com/sonpt1986/jwt_api/master/deploy/install.sh
