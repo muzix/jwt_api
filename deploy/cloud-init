@@ -1,0 +1,8 @@
+#cloud-config
+runcmd:
+  - yum -y install wget
+  - wget https://raw.githubusercontent.com/sonpt1986/jwt_api/master/deploy/install.sh
+  - wget https://raw.githubusercontent.com/sonpt1986/jwt_api/master/deploy/nginx.conf
+  - wget https://raw.githubusercontent.com/sonpt1986/jwt_api/master/deploy/nginx.service
+  - chmod +x ./install.sh
+  - ./install.sh
