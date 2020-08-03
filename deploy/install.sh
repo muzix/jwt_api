@@ -1,4 +1,4 @@
-yum -y install autoconf automake bzip2 bzip2-devel cmake freetype-devel gcc gcc-c++ git libtool make mercurial pkgconfig zlib-devel
+yum -y install autoconf automake bzip2 bzip2-devel cmake freetype-devel gcc gcc-c++ git libtool make mercurial pkgconfig zlib-devel openssl
 mkdir ~/ffmpeg_sources
 cd ~/ffmpeg_sources
 curl -O -L https://www.nasm.us/pub/nasm/releasebuilds/2.14.02/nasm-2.14.02.tar.bz2
@@ -74,7 +74,8 @@ PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./conf
   --enable-libvpx \
   --enable-libx264 \
   --enable-libx265 \
-  --enable-nonfree
+  --enable-nonfree \
+  --enable-openssl
 make
 make install
 hash -d ffmpeg
