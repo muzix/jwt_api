@@ -17,7 +17,8 @@ if [ "${arr[5]}" = "aa" ]
 then
   echo "facebook empty" >> /root/debug.log
 else
-  /usr/bin/ffmpeg -threads 3 -i rtmp://localhost/live/$1 -c:v copy -c:a copy -f flv rtmp://live-api-a.facebook.com:80/rtmp/${arr[5]} >> /root/debug.log &
+  /usr/bin/ffmpeg -threads 3 -i rtmp://localhost/live/$1 -c:v copy -c:a copy -f flv rtmps://live-api-s.facebook.com:443/rtmp/${arr[5]} >> /root/debug.log &
 fi
 wait
+pkill -P $$
 echo "All done" >> /root/debug.log
