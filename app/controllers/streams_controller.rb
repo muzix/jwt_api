@@ -1,6 +1,13 @@
 class StreamsController < ApplicationController
   before_action :verify_user
   def create
+    stream_name = auth_params[:name]
+    if auth_params[:call] == 'publish'
+      verify_user
+      # TODO: create stream
+    elsif auth_params[:call] == 'publish_done'
+      ## TODO: delete stream
+    end
   end
 
   private
@@ -20,7 +27,9 @@ class StreamsController < ApplicationController
 
   def auth_params
     params.permit(
-      :auth
+      :auth,
+      :call,
+      :name
     )
   end
 end

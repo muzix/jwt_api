@@ -1,13 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'POST /users/login', type: :request do
-  let(:user) { Fabricate(:user) }
+  let(:user) { create(:user) }
   let(:url) { '/users/login' }
   let(:params) do
     {
       user: {
-        email: user.email,
-        password: user.password
+        username: user.username,
+        password: user.password,
+        email: user.email
       }
     }
   end
@@ -38,7 +39,7 @@ RSpec.describe 'POST /users/login', type: :request do
       {
         user: {
           email: user.email,
-          password: user.password + '12'
+          password: user.password + '12',
         }
       }
     end

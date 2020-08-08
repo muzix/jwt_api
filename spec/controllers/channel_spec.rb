@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'GET /channels', type: :request do
 
-  let(:user) { Fabricate(:user) }
+  let(:user) { create(:user) }
   let(:url) { '/channels' }
 
   context 'when unauthorized' do
@@ -20,8 +20,8 @@ RSpec.describe 'GET /channels', type: :request do
     let(:params) do
       {
         user: {
-          email: user.email,
-          password: user.password
+          password: user.password,
+          email: user.email
         }
       }
     end

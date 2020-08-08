@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe 'GET /streams', type: :request do
+RSpec.describe 'post /streams', type: :request do
 
-  let(:user) { Fabricate(:user) }
+  let(:user) { create(:user) }
   let(:url) { '/streams/' }
 
   context 'when unauthorized' do
     before do
-      get url
+      post url
     end
 
     it 'returns 401' do
@@ -17,7 +17,7 @@ RSpec.describe 'GET /streams', type: :request do
 
   context 'when invalid token' do
     before do
-      get url, params: { auth: 'dummy_auth' }
+      post url, params: { auth: 'dummy_auth' }
     end
 
     it 'returns 401' do
@@ -27,7 +27,7 @@ RSpec.describe 'GET /streams', type: :request do
 
   context 'when dev token' do
     before do
-      get url, params: { auth: 'dev' }
+      post url, params: { auth: 'dev' }
     end
 
     it 'returns 200' do
@@ -40,8 +40,8 @@ RSpec.describe 'GET /streams', type: :request do
     let(:params) do
       {
         user: {
-          email: user.email,
-          password: user.password
+          password: user.password,
+          email: user.email
         }
       }
     end
@@ -52,7 +52,7 @@ RSpec.describe 'GET /streams', type: :request do
       auth = response.headers['Authorization']
       expect(auth).to be_present
 
-      get url, params: { auth: auth.split(' ')[1] }
+      post url, params: { auth: auth.split(' ')[1] }
     end
 
     it 'returns 200 with channel data' do

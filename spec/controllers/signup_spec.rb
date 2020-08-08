@@ -5,8 +5,9 @@ RSpec.describe 'POST /users/signup', type: :request do
   let(:params) do
     {
       user: {
-        email: 'user@example.com',
-        password: 'password'
+        username: 'example_user',
+        password: 'password',
+        email: 'user@example.com'
       }
     }
   end
@@ -25,13 +26,13 @@ RSpec.describe 'POST /users/signup', type: :request do
     end
 
     it 'create a new user' do
-      expect(User.first.email).to eq(params[:user][:email])
+      expect(User.first.username).to eq(params[:user][:username])
     end
   end
 
   context 'when user already exists' do
     before do
-      Fabricate(:user, email: params[:user][:email])
+      create(:user, username: params[:user][:username])
       post url, params: params
     end
 
@@ -40,7 +41,7 @@ RSpec.describe 'POST /users/signup', type: :request do
     end
 
     it 'returns validation errors' do
-      expect(JSON.parse(response.body)['errors']['email']).to include('has already been taken')
+      expect(JSON.parse(response.body)['errors']['username']).to include('has already been taken')
     end
   end
 end
