@@ -1,7 +1,5 @@
 ActiveAdmin.register Server do
   batch_action :destroy, false
-  
-  permit_params :ip
 
   index do
     selectable_column

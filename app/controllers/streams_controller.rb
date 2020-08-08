@@ -32,7 +32,7 @@ class StreamsController < ApiController
     begin
       user = User.find_by_id(auth_params[:name]) || User.first
       server = Server.first_or_create(ip: request.remote_ip)
-      Stream.create(user: user, server: server)
+      Stream.create(user: user, server: server, name: auth_params[:name])
     rescue
     end
   end
