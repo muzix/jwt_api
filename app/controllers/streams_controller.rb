@@ -1,4 +1,4 @@
-class StreamsController < ApplicationController
+class StreamsController < ApiController
   before_action :verify_user
   def create
     stream_name = auth_params[:name]
