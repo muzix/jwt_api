@@ -1,12 +1,12 @@
 class StreamsController < ApiController
   before_action :verify_user
   def create
-    stream_name = auth_params[:name]
     if auth_params[:call] == 'publish'
       verify_user
-      # TODO: create stream
     elsif auth_params[:call] == 'publish_done'
-      ## TODO: delete stream
+      user = User.find(auth_params[:name])
+      server = Server.where(ip: request.remote_ip).first
+      Stream.where(user: user, server: server).destroy_all
     end
   end
 
@@ -14,13 +14,20 @@ class StreamsController < ApiController
 
   def verify_user
     begin
-      if auth_params[:auth].split(' ')[0] == 'dev'
+      auth = auth_params[:auth].split(' ')[0]
+      if auth == 'dev'
         render json: {}, status: 200
       else
-        decoded_token = JWT.decode(auth_params[:auth], ENV['DEVISE_JWT_SECRET_KEY'], true)
-        render json: {}, status: 200
+        decoded_token = JWT.decode(auth, ENV['DEVISE_JWT_SECRET_KEY'], true)
+        begin
+          user = User.find(auth_params[:name])
+          server = Server.first_or_create(ip: request.remote_ip)
+          Stream.create(user: user, server: server)
+        rescue
+        end
+        head :ok
       end
-    rescue Exception
+    rescue Exception => e
       render json: {}, status: 401
     end
   end

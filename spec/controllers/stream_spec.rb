@@ -40,8 +40,8 @@ RSpec.describe 'post /streams', type: :request do
     let(:params) do
       {
         user: {
-          password: user.password,
-          email: user.email
+          email: user.email,
+          password: user.password
         }
       }
     end
@@ -51,12 +51,17 @@ RSpec.describe 'post /streams', type: :request do
       expect(response).to have_http_status(200)
       auth = response.headers['Authorization']
       expect(auth).to be_present
+      auths = auth.split(' ')
 
-      post url, params: { auth: auth.split(' ')[1] }
+      post url, params: { auth: auths[1] + ' live_103666444_xiAx4AzmyMNNZAIbTZ5ngAC3eMAXsR aa aa',
+                          name: user.id}
     end
 
     it 'returns 200 with channel data' do
       expect(response).to have_http_status(200)
+      expect(Stream.count).to eq(1)
+      expect(Stream.first.user).to eq(user)
+      expect(Stream.first.server.ip).to eq('127.0.0.1')
     end
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_08_122040) do
+ActiveRecord::Schema.define(version: 2020_08_08_133923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,13 @@ ActiveRecord::Schema.define(version: 2020_08_08_122040) do
   create_table "servers", force: :cascade do |t|
     t.string "ip"
     t.index ["ip"], name: "index_servers_on_ip", unique: true
+  end
+
+  create_table "streams", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "server_id"
+    t.index ["server_id"], name: "index_streams_on_server_id"
+    t.index ["user_id"], name: "index_streams_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
