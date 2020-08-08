@@ -6,9 +6,8 @@ RSpec.describe 'POST /users/login', type: :request do
   let(:params) do
     {
       user: {
-        username: user.username,
-        password: user.password,
-        email: user.email
+        email: user.email,
+        password: user.password
       }
     }
   end
