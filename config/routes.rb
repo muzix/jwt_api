@@ -11,4 +11,5 @@ Rails.application.routes.draw do
                  registrations: 'registrations'
                }
     resources :channels
+    resources :streams
 end

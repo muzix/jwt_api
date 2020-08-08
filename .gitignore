@@ -13,6 +13,7 @@
 !/log/.keep
 !/tmp/.keep
 /bin/*
+nohup.out
 
 # Ignore uploaded files in development
 /storage/*
