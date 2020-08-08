@@ -13,6 +13,7 @@ ExecStartPost=curl -X POST http://188.166.216.44:3000/server
 
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s TERM $MAINPID
+ExecStopPost=curl -X POST http://188.166.216.44:3000/server/detach
 
 [Install]
 WantedBy=multi-user.target
